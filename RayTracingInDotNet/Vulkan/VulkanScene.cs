@@ -94,7 +94,7 @@ namespace RayTracingInDotNet.Vulkan
 			BufferUtil.CreateDeviceBuffer(api, commandPool, "Offsets", BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, offsets.ToArray(), out _offsetBuffer, out _offsetBufferMemory);
 			BufferUtil.CreateDeviceBuffer(api, commandPool, "Transforms", BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, Transforms, out _transformBuffer, out _transformBufferMemory);
 
-			BufferUtil.CreateDeviceBuffer(api, commandPool, "AABBs", BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, aabbs.ToArray(), out _aabbBuffer, out _aabbBufferMemory);
+			BufferUtil.CreateDeviceBuffer(api, commandPool, "AABBs", BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit | BufferUsageFlags.BufferUsageAccelerationStructureBuildInputReadOnlyBitKhr, aabbs.ToArray(), out _aabbBuffer, out _aabbBufferMemory);
 			BufferUtil.CreateDeviceBuffer(api, commandPool, "Procedurals", BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, procedurals.ToArray(), out _proceduralBuffer, out _proceduralBufferMemory);
 
 			if (procedurals.Count > 0)

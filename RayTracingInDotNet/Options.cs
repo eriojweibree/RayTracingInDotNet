@@ -36,7 +36,7 @@ namespace RayTracingInDotNet
 		public bool DebugLogging { get; set; }
 
 		// Scene options.
-		[Option("scene", Default = (uint)7, Required = false, HelpText = "The scene to start with.")]
+		[Option("scene", Default = (uint)6, Required = false, HelpText = "The scene to start with.")]
 		public uint SceneIndex { get; set; }
 
 		// Renderer options.

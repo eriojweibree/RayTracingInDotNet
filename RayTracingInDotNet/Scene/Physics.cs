@@ -13,6 +13,7 @@ using System.Threading;
 
 namespace RayTracingInDotNet.Scene
 {
+	/*
 	[Scene("Physics")]
 	class Physics : IScene
 	{
@@ -43,7 +44,8 @@ namespace RayTracingInDotNet.Scene
 			_bufferPool = new BufferPool();
 			var targetThreadCount = Math.Max(1, Environment.ProcessorCount > 4 ? Environment.ProcessorCount - 2 : Environment.ProcessorCount - 1);
 			_threadDispatcher = new SimpleThreadDispatcher(targetThreadCount);
-			_simulation = Simulation.Create(_bufferPool, new DemoNarrowPhaseCallbacks(), new DemoPoseIntegratorCallbacks(new Vector3(0, -9.8f, 0)), new PositionFirstTimestepper());
+
+			_simulation = Simulation.Create(_bufferPool, new DemoNarrowPhaseCallbacks(), new DemoPoseIntegratorCallbacks(new Vector3(0, -9.8f, 0)), new SolveDescription());
 
 			var random = new Random(42);
 
@@ -61,7 +63,7 @@ namespace RayTracingInDotNet.Scene
 			const float marbleRadius = boxDim / 2f;
 
 			var boxShape = new Box(boxDim, boxDim, boxDim);
-			boxShape.ComputeInertia(.1f, out var boxInertia);
+			var boxInertia = boxShape.ComputeInertia(.1f);
 			var boxIndex = _simulation.Shapes.Add(boxShape);
 
 			var marbleShape = new BepuPhysics.Collidables.Sphere(marbleRadius);
@@ -364,4 +366,5 @@ namespace RayTracingInDotNet.Scene
 			}
 		}
 	}
+	*/
 }

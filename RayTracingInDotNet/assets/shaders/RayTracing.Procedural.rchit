@@ -9,7 +9,6 @@ layout(binding = 4) readonly buffer VertexArray { float Vertices[]; };
 layout(binding = 5) readonly buffer IndexArray { uint Indices[]; };
 layout(binding = 6) readonly buffer MaterialArray { Material[] Materials; };
 layout(binding = 7) readonly buffer OffsetArray { uvec2[] Offsets; };
-layout(binding = 8) readonly buffer TransformArray { mat4[] Transforms; };
 layout(binding = 9) uniform sampler2D[] TextureSamplers;
 layout(binding = 10) readonly buffer SphereArray { vec4[] Spheres; };
 
@@ -40,7 +39,7 @@ void main()
 
 	// Get the material.
 	const uvec2 offsets = Offsets[gl_InstanceCustomIndexEXT];
-	const mat4 transform = Transforms[gl_InstanceCustomIndexEXT];
+	const mat4 transform = mat4(gl_ObjectToWorldEXT);
 	mat4 transformRot = transform;
 	transformRot[3].x=0;
 	transformRot[3].y=0;

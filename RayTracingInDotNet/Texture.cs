@@ -1,6 +1,7 @@
 ﻿using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 
 namespace RayTracingInDotNet
 {
@@ -16,12 +17,10 @@ namespace RayTracingInDotNet
 			height = image.Height;
 			channels = 4;
 
-			if (!image.TryGetSinglePixelSpan(out Span<Rgba32> pixelSpan))
-				throw new Exception($"{nameof(Texture)}: Unable to get image pixel span.");
+			byte[] pixelBytes = new byte[image.Width * image.Height * Unsafe.SizeOf<Rgba32>()];
+			image.CopyPixelDataTo(pixelBytes);
 
-			var pixels = MemoryMarshal.AsBytes(pixelSpan).ToArray();
-
-			return new Texture(width, height, channels, pixels);
+			return new Texture(width, height, channels, pixelBytes);
 		}
 
 		public static Texture LoadTexture(ReadOnlySpan<byte> data)
@@ -34,12 +33,10 @@ namespace RayTracingInDotNet
 			height = image.Height;
 			channels = 4;
 
-			if (!image.TryGetSinglePixelSpan(out Span<Rgba32> pixelSpan))
-				throw new Exception($"{nameof(Texture)}: Unable to get image pixel span.");
+			byte[] pixelBytes = new byte[image.Width * image.Height * Unsafe.SizeOf<Rgba32>()];
+			image.CopyPixelDataTo(pixelBytes);
 
-			var pixels = MemoryMarshal.AsBytes(pixelSpan).ToArray();
-
-			return new Texture(width, height, channels, pixels);
+			return new Texture(width, height, channels, pixelBytes);
 		}
 
 		public static Texture LoadTexture(byte[] pixels, int width, int height)
