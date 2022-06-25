@@ -8,6 +8,7 @@
 #include "Random.glsl"
 #include "RayPayload.glsl"
 #include "UniformBufferObject.glsl"
+#include "ToneMapping.glsl"
 
 layout(binding = 0, set = 0) uniform accelerationStructureEXT Scene;
 layout(binding = 1, rgba32f) uniform image2D AccumulationImage;
@@ -17,7 +18,7 @@ layout(binding = 3) readonly uniform UniformBufferObjectStruct { UniformBufferOb
 layout(location = 0) rayPayloadEXT RayPayload Ray;
 
 
-void main() 
+void main()
 {
 	const uint64_t clock = Camera.ShowHeatmap ? clockARB() : 0;
 
@@ -89,7 +90,8 @@ void main()
 	pixelColor = accumulatedColor / Camera.TotalNumberOfSamples;
 
 	// Apply raytracing-in-one-weekend gamma correction.
-	pixelColor = sqrt(pixelColor);
+	// pixelColor = sqrt(pixelColor);
+	pixelColor = toneMap(pixelColor, Camera.Exposure);
 
 	if (Camera.ShowHeatmap)
 	{

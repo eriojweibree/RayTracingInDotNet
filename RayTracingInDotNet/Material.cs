@@ -11,7 +11,7 @@ namespace RayTracingInDotNet
 
 		// Base material
 		public readonly Vector4 Diffuse;
-		public readonly int DiffuseTextureId;
+		public readonly uint DiffuseTextureId;
 
 		// Metal fuzziness
 		public readonly float Fuzziness;
@@ -22,22 +22,22 @@ namespace RayTracingInDotNet
 		// Which material are we dealing with
 		public readonly MaterialModel Model;
 
-		public Material(in Vector4 diffuse, int diffuseTextureId, float fuzziness, float refractionIndex, MaterialModel model) =>
+		public Material(in Vector4 diffuse, uint diffuseTextureId, float fuzziness, float refractionIndex, MaterialModel model) =>
 			(Diffuse, DiffuseTextureId, Fuzziness, RefractionIndex, Model) = (diffuse, diffuseTextureId, fuzziness, refractionIndex, model);
 
-		public static Material Lambertian(in Vector3 diffuse, int textureId = -1) =>
+		public static Material Lambertian(in Vector3 diffuse, uint textureId = 0) =>
 			new Material(new Vector4(diffuse, 1), textureId, 0.0f, 0.0f, MaterialModel.Lambertian);
 
-		public static Material Metallic(in Vector3 diffuse, float fuzziness, int textureId = -1) =>
+		public static Material Metallic(in Vector3 diffuse, float fuzziness, uint textureId = 0) =>
 			new Material(new Vector4(diffuse, 1), textureId, fuzziness, 0.0f, MaterialModel.Metallic);
 
-		public static Material Dielectric(float refractionIndex, int textureId = -1) =>
+		public static Material Dielectric(float refractionIndex, uint textureId = 0) =>
 			new Material(new Vector4(0.7f, 0.7f, 1.0f, 1), textureId, 0.0f, refractionIndex, MaterialModel.Dielectric);
 
-		public static Material Isotropic(in Vector3 diffuse, int textureId = -1) =>
+		public static Material Isotropic(in Vector3 diffuse, uint textureId = 0) =>
 			new Material(new Vector4(diffuse, 1), textureId, 0.0f, 0.0f, MaterialModel.Isotropic);
 
-		public static Material DiffuseLight(in Vector3 diffuse, int textureId = -1) =>
+		public static Material DiffuseLight(in Vector3 diffuse, uint textureId = 0) =>
 			new Material(new Vector4(diffuse, 1), textureId, 0.0f, 0.0f, MaterialModel.DiffuseLight);
 
 		[Flags]

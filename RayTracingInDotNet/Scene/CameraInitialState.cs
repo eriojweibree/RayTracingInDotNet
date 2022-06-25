@@ -11,6 +11,6 @@ namespace RayTracingInDotNet.Scene
 		public float Aperture;
 		public float FocusDistance;
 		public float ControlSpeed;
-		public bool GammaCorrection;
+		public float Exposure = 1.0f;
 	};
 }

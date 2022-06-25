@@ -9,12 +9,10 @@ namespace RayTracingInDotNet.Scene
 	{
 		public List<Model> Models { get; private set; } = new List<Model>();
 		public List<Texture> Textures { get; private set; } = new List<Texture>();
+		public string EnvironmentTexture { get; private set; } = "./assets/textures/christmas_photo_studio_04_2k.hdr";
 
 		public void Reset(CameraInitialState camera)
 		{
-			Models.Clear();
-			Textures.Clear();
-
 			// Same as RayTracingInOneWeekend but using the Lucy 3D model.
 
 			camera.ModelView = Matrix4x4.CreateLookAt(new Vector3(13, 2, 3), new Vector3(0, 1.0f, 0), new Vector3(0, 1, 0));
@@ -22,7 +20,6 @@ namespace RayTracingInDotNet.Scene
 			camera.Aperture = 0.05f;
 			camera.FocusDistance = 10.0f;
 			camera.ControlSpeed = 5.0f;
-			camera.GammaCorrection = true;
 			camera.SkyColor1 = new Vector4(1);
 			camera.SkyColor2 = new Vector4(.5f, .7f, 1f, 1f);
 

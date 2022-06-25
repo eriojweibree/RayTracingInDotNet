@@ -16,11 +16,12 @@ namespace RayTracingInDotNet
 		public Vector4 SkyColor2;
 		public float Aperture;
 		public float FocusDistance;
-		public float HeatmapScale;
 		public uint TotalNumberOfSamples;
 		public uint NumberOfSamples;
 		public uint NumberOfBounces;
 		public uint RandomSeed;
+		public float Exposure;
 		public uint ShowHeatmap; // bool
+		public float HeatmapScale;
 	}
 }

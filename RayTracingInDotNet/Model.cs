@@ -93,7 +93,7 @@ namespace RayTracingInDotNet
 							float r = BitConverter.ToSingle(dataSpan.Slice(0, 4));
 							float g = BitConverter.ToSingle(dataSpan.Slice(4, 4));
 							float b = BitConverter.ToSingle(dataSpan.Slice(8, 4));
-							mat = new Material(new Vector4(r, g, b, 1.0f), -1, 0, 0, Material.MaterialModel.Lambertian);
+							mat = new Material(new Vector4(r, g, b, 1.0f), 0, 0, 0, Material.MaterialModel.Lambertian);
 							break;
 						case "?mat.name":
 							// Field has length integer and null terminator; slice them out

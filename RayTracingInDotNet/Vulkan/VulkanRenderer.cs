@@ -362,6 +362,7 @@ namespace RayTracingInDotNet.Vulkan
 			Matrix4x4.Invert(ubo.Projection, out ubo.ProjectionInverse);
 			ubo.Aperture = _userSettings.Aperture;
 			ubo.FocusDistance = _userSettings.FocusDistance;
+			ubo.Exposure = _userSettings.Exposure;
 			ubo.TotalNumberOfSamples = TotalNumberOfSamples;
 			ubo.NumberOfSamples = NumberOfSamples;
 			ubo.NumberOfBounces = _userSettings.NumberOfBounces;
@@ -651,11 +652,11 @@ namespace RayTracingInDotNet.Vulkan
 
 			_scene = scene;
 
-			scene.Reset(cameraInitialState);
+			scene.Load(cameraInitialState);
 
 			// If there are no texture, add a dummy one. It makes the pipeline setup a lot easier.
-			if (scene.Textures.Count == 0)
-				scene.Textures.Add(Texture.LoadTexture("./assets/textures/white.png"));
+			if (scene.Textures.Count == 0) throw new Exception("This condition cant appear?");
+				//scene.Textures.Add(Texture.LoadTexture("./assets/textures/white.png"));
 
 			_vulkanScene?.Dispose();
 			_vulkanScene = new VulkanScene(_api, _commandPool, scene.Models, scene.Textures);

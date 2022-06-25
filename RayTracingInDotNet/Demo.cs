@@ -110,6 +110,7 @@ namespace RayTracingInDotNet
 				_userSettings.FieldOfView = _cameraInitialState.FieldOfView;
 				_userSettings.Aperture = _cameraInitialState.Aperture;
 				_userSettings.FocusDistance = _cameraInitialState.FocusDistance;
+				_userSettings.Exposure = _cameraInitialState.Exposure;
 
 				_modelViewController.Reset(_cameraInitialState.ModelView);
 			}
@@ -291,6 +292,7 @@ namespace RayTracingInDotNet
 				ImGuiNET.ImGui.SliderFloat("FoV", ref _userSettings.FieldOfView, UserSettings.FieldOfViewMinValue, UserSettings.FieldOfViewMaxValue, "%.0f");
 				ImGuiNET.ImGui.SliderFloat("Aperture", ref _userSettings.Aperture, 0.0f, 1.0f, "%.2f");
 				ImGuiNET.ImGui.SliderFloat("Focus", ref _userSettings.FocusDistance, 0.1f, 20.0f, "%.1f");
+				ImGuiNET.ImGui.SliderFloat("Exposure", ref _userSettings.Exposure, 0.1f, 10.0f, "%.1f");
 				ImGuiNET.ImGui.NewLine();
 
 				ImGuiNET.ImGui.Text("Profiler");

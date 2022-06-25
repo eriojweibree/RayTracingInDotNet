@@ -19,6 +19,7 @@ namespace RayTracingInDotNet
 		public float FieldOfView;
 		public float Aperture;
 		public float FocusDistance;
+		public float Exposure;
 
 		// Profiler
 		public bool ShowHeatmap;
@@ -36,6 +37,7 @@ namespace RayTracingInDotNet
 			NumberOfBounces != prev.NumberOfBounces ||
 			FieldOfView != prev.FieldOfView ||
 			Aperture != prev.Aperture ||
-			FocusDistance != prev.FocusDistance;
+			FocusDistance != prev.FocusDistance ||
+			Exposure != prev.Exposure;
 	}
 }

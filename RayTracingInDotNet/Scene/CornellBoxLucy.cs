@@ -9,18 +9,15 @@ namespace RayTracingInDotNet.Scene
 	{
 		public List<Model> Models { get; private set; } = new List<Model>();
 		public List<Texture> Textures { get; private set; } = new List<Texture>();
+		public string EnvironmentTexture { get; private set; } = null;
 
 		public void Reset(CameraInitialState camera)
 		{
-			Models.Clear();
-			Textures.Clear();
-
 			camera.ModelView = Matrix4x4.CreateLookAt(new Vector3(278, 278, 800), new Vector3(278, 278, 0), new Vector3(0, 1, 0));
 			camera.FieldOfView = 40;
 			camera.Aperture = 0.0f;
 			camera.FocusDistance = 10.0f;
 			camera.ControlSpeed = 500.0f;
-			camera.GammaCorrection = true;
 			camera.SkyColor1 = new Vector4(0);
 			camera.SkyColor2 = new Vector4(0);
 

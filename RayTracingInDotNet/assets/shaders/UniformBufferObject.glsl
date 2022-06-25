@@ -9,10 +9,11 @@ struct UniformBufferObject
 	vec4 SkyColor2;
 	float Aperture;
 	float FocusDistance;
-	float HeatmapScale;
 	uint TotalNumberOfSamples;
 	uint NumberOfSamples;
 	uint NumberOfBounces;
 	uint RandomSeed;
+	float Exposure;
 	bool ShowHeatmap;
+	float HeatmapScale;
 };
