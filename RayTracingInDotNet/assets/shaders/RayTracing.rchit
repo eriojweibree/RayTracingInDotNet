@@ -30,7 +30,7 @@ void main()
 {
 	// Get the material.
 	const uvec2 offsets = Offsets[gl_InstanceCustomIndexEXT];
-	const mat4 transform = mat4(gl_ObjectToWorldEXT);;
+	const mat4 transform = mat4(gl_ObjectToWorldEXT);
 	const uint indexOffset = offsets.x;
 	const uint vertexOffset = offsets.y;
 	const Vertex v0 = UnpackVertex(vertexOffset + Indices[indexOffset + gl_PrimitiveID * 3 + 0], transform);

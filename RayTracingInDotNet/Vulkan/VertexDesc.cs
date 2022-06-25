@@ -16,7 +16,7 @@ namespace RayTracingInDotNet.Vulkan
 
 		public static VertexInputAttributeDescription[] GetAttributeDescriptions()
 		{
-			var attributeDescriptions = new VertexInputAttributeDescription[4];
+			var attributeDescriptions = new VertexInputAttributeDescription[5];
 
 			attributeDescriptions[0].Binding = 0;
 			attributeDescriptions[0].Location = 0;
@@ -37,6 +37,11 @@ namespace RayTracingInDotNet.Vulkan
 			attributeDescriptions[3].Location = 3;
 			attributeDescriptions[3].Format = Format.R32Sint;
 			attributeDescriptions[3].Offset = (uint)Marshal.OffsetOf<Vertex>(nameof(Vertex.MaterialIndex));
+
+			attributeDescriptions[4].Binding = 0;
+			attributeDescriptions[4].Location = 4;
+			attributeDescriptions[4].Format = Format.R32G32B32Sfloat;
+			attributeDescriptions[4].Offset = (uint)Marshal.OffsetOf<Vertex>(nameof(Vertex.Tangent));
 
 			return attributeDescriptions;
 		}

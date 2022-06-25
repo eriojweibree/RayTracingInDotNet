@@ -44,7 +44,7 @@ namespace RayTracingInDotNet.Vulkan
 			var materials = new List<Material>();
 			var procedurals = new List<Vector4>();
 			var aabbs = new List<AabbPositionsKHR>();
-			var offsets = new List<(uint X, uint Y)>();
+			var offsets = new List<(uint IndexOffset, uint VertexOffset)>();
 			var transforms = new List<Matrix4x4>();
 
 			foreach (var model in _models)
@@ -88,8 +88,8 @@ namespace RayTracingInDotNet.Vulkan
 
 			Transforms = transforms.ToArray();
 
-			BufferUtil.CreateDeviceBuffer(api, commandPool, "Vertices", BufferUsageFlags.BufferUsageVertexBufferBit | BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, vertices.ToArray(), out _vertexBuffer, out _vertexBufferMemory);
-			BufferUtil.CreateDeviceBuffer(api, commandPool, "Indices", BufferUsageFlags.BufferUsageIndexBufferBit | BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, indices.ToArray(), out _indexBuffer, out _indexBufferMemory);
+			BufferUtil.CreateDeviceBuffer(api, commandPool, "Vertices", BufferUsageFlags.BufferUsageVertexBufferBit | BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit | BufferUsageFlags.BufferUsageAccelerationStructureBuildInputReadOnlyBitKhr, vertices.ToArray(), out _vertexBuffer, out _vertexBufferMemory);
+			BufferUtil.CreateDeviceBuffer(api, commandPool, "Indices", BufferUsageFlags.BufferUsageIndexBufferBit | BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit | BufferUsageFlags.BufferUsageAccelerationStructureBuildInputReadOnlyBitKhr, indices.ToArray(), out _indexBuffer, out _indexBufferMemory);
 			BufferUtil.CreateDeviceBuffer(api, commandPool, "Materials", BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, materials.ToArray(), out _materialBuffer, out _materialBufferMemory);
 			BufferUtil.CreateDeviceBuffer(api, commandPool, "Offsets", BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, offsets.ToArray(), out _offsetBuffer, out _offsetBufferMemory);
 			BufferUtil.CreateDeviceBuffer(api, commandPool, "Transforms", BufferUsageFlags.BufferUsageStorageBufferBit | BufferUsageFlags.BufferUsageShaderDeviceAddressBit, Transforms, out _transformBuffer, out _transformBufferMemory);
