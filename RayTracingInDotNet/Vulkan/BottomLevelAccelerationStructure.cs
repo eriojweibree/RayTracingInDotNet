@@ -54,5 +54,19 @@ namespace RayTracingInDotNet.Vulkan
 
 			_api.KhrAccelerationStructure.CmdBuildAccelerationStructures(commandBuffer, 1, _buildGeometryInfo, &pBuildOffsetInfo);
 		}
+
+		public unsafe void Rebuild(
+			in CommandBuffer commandBuffer,
+			Buffer scratchBuffer,
+			ulong scratchOffset)
+        {
+			// Build the actual bottom-level acceleration structure
+			AccelerationStructureBuildRangeInfoKHR* pBuildOffsetInfo = (AccelerationStructureBuildRangeInfoKHR*)Unsafe.AsPointer(ref _buildOffsetInfo[0]);
+
+			_buildGeometryInfo.DstAccelerationStructure = _accelerationStructureKhr;
+			_buildGeometryInfo.ScratchData.DeviceAddress = scratchBuffer.GetDeviceAddress() + scratchOffset;
+
+			_api.KhrAccelerationStructure.CmdBuildAccelerationStructures(commandBuffer, 1, _buildGeometryInfo, &pBuildOffsetInfo);
+		}
 	}
 }
